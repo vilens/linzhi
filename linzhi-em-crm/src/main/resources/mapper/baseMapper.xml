@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vilens.linzi.em.crm.dao" >
+
+    <resultMap id="ProjectDetailResultMap" type="com.vilens.linzi.em.crm.pojo.ProjectDetail" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="project_account" property="projectAccount" jdbcType="VARCHAR" />
+        <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+        <result column="busbar_bridge" property="busbarBridge" jdbcType="INTEGER" />
+        <result column="cable_bridge" property="cableBridge" jdbcType="INTEGER" />
+        <result column="own_name" property="ownName" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="datas_status" property="datasStatus" jdbcType="VARCHAR" />
+        <result column="audit_status" property="auditStatus" jdbcType="VARCHAR" />
+        <result column="invoice_status" property="invoiceStatus" jdbcType="VARCHAR" />
+        <result column="billing_val" property="billingVal" jdbcType="DOUBLE" />
+        <result column="received_payments_status" property="receivedPaymentsStatus" jdbcType="VARCHAR" />
+        <result column="received_payments_val" property="receivedPaymentsVal" jdbcType="DOUBLE" />
+        <result column="total_pay_amount" property="totalPayAmount" jdbcType="DOUBLE" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="contract_id" property="contractId" jdbcType="INTEGER" />
+        <result column="contract_code" property="contractCode" jdbcType="VARCHAR" />
+        <result column="contract_val" property="contractVal" jdbcType="VARCHAR" />
+        <result column="contract_status" property="contractStatus" jdbcType="VARCHAR" />
+        <result column="contract_confirm" property="contractConfirm" jdbcType="VARCHAR" />
+        <result column="pay_val" property="payVal" jdbcType="VARCHAR" />
+        <result column="is_main" property="isMain" jdbcType="INTEGER" />
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+        <result column="p_id" property="pId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="SubContractResultMap" type="com.vilens.linzi.em.crm.entity.Contract" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="contract_code" property="contractCode" jdbcType="VARCHAR" />
+        <result column="contract_val" property="contractVal" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="contract_confirm" property="contractConfirm" jdbcType="VARCHAR" />
+        <result column="pay_val" property="payVal" jdbcType="VARCHAR" />
+        <result column="is_main" property="isMain" jdbcType="INTEGER" />
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+        <result column="p_id" property="pId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="project_column_list" >
+        p.id,
+        p.project_account,
+        p.project_name,
+        p.busbar_bridge,
+        p.cable_bridge,
+        p.own_name,
+        p.status,
+        p.datas_status,
+        p.audit_status,
+        p.invoice_status,
+        p.billing_val,
+        p.received_payments_status,
+        p.received_payments_val,
+        p.total_pay_amount,
+        p.remark,
+        t.id contract_id,
+        t.contract_code,
+        t.contract_val,
+        t.status contract_status,
+        t.contract_confirm,
+        t.pay_val,
+        t.is_main,
+        t.owner_id,
+        t.p_id
+    </sql>
+
+    <insert id="createProject" parameterType="com.vilens.linzi.em.crm.entity.Project" useGeneratedKeys="true" keyProperty="id">
+        insert into t_project(project_account,project_name)
+        values (#{projectAccount}, #{projectName})
+    </insert>
+    <insert id="createContract" parameterType="java.util.HashMap">
+        insert into t_contract(p_id,is_main)
+        values (#{projectId}, #{isMain})
+    </insert>
+    <select id="selectProjectList" parameterType="java.util.HashMap" resultMap="ProjectDetailResultMap" >
+        select
+        <include refid="project_column_list" />
+        from t_project p
+        inner join t_contract t on p.id = t.p_id and t.is_main = 1
+        order by p.id asc
+    </select>
+    <select id="selectProjectById" parameterType="java.util.HashMap" resultMap="ProjectDetailResultMap" >
+        select
+        <include refid="project_column_list" />
+        from t_project p
+        inner join t_contract t on p.id = t.p_id and t.is_main = 1
+        where p.id = #{projectId}
+        order by p.id asc
+    </select>
+    <select id="selectSubContractListByProjectId" parameterType="java.util.HashMap" resultMap="SubContractResultMap" >
+        select
+            t.id,
+            t.contract_code,
+            t.contract_val,
+            t.status,
+            t.contract_confirm,
+            t.pay_val,
+            t.is_main,
+            t.owner_id,
+            t.p_id
+        from t_project p
+        inner join t_contract t on p.id = t.p_id and t.is_main = 0
+        where p.id = #{projectId}
+        order by p.id asc
+    </select>
+    <!--<select id="selectContractList" parameterType="java.util.HashMap" resultType="java.util.HashMap" >-->
+        <!--select-->
+        <!--<include refid="project_column_list" />-->
+        <!--from t_project p-->
+        <!--inner join t_contract t on p.id = t.p_id-->
+        <!--where t.is_main = 1-->
+    <!--</select>-->
+    <update id="updateProjectById" parameterType="com.vilens.linzi.em.crm.pojo.ProjectDetail" >
+        update  t_project p
+        inner join t_contract t
+        on  p.id = t.p_id  and t.is_main = 1
+        <trim prefix="set" suffixOverrides=",">
+            <if test="projectAccount!=null">p.project_account=#{projectAccount},</if>
+            <if test="projectName!=null">p.project_name=#{projectName},</if>
+            <if test="busbarBridge!=null">p.busbar_bridge=#{busbarBridge},</if>
+            <if test="cableBridge!=null">p.cable_bridge=#{cableBridge},</if>
+            <if test="ownName!=null">p.own_name=#{ownName},</if>
+            <if test="status!=null">p.status=#{status},</if>
+            <if test="datasStatus!=null">p.datas_status=#{datasStatus},</if>
+            <if test="auditStatus!=null">p.audit_status=#{auditStatus},</if>
+            <if test="invoiceStatus!=null">p.invoice_status=#{invoiceStatus},</if>
+            <if test="billingVal!=null">p.billing_val=#{billingVal},</if>
+            <if test="receivedPaymentsStatus!=null">p.received_payments_status=#{receivedPaymentsStatus},</if>
+            <if test="receivedPaymentsVal!=null">p.received_payments_val=#{receivedPaymentsVal},</if>
+            <if test="totalPayAmount!=null">p.total_pay_amount=#{totalPayAmount},</if>
+            <if test="remark!=null">p.remark=#{remark},</if>
+
+            <if test="contractCode!=null">t.contract_code=#{contractCode},</if>
+            <if test="contractVal!=null">t.contract_val=#{contractVal},</if>
+            <if test="contractStatus!=null">t.status=#{contractStatus},</if>
+            <if test="contractConfirm!=null">t.contract_confirm=#{contractConfirm},</if>
+            <if test="payVal!=null">t.pay_val=#{payVal},</if>
+        </trim>
+        where p.id = #{id}
+        <!--<if test="start != null">-->
+            <!--limit #{start}, #{limit}-->
+        <!--</if>-->
+    </update>
+    <update id="updateContractById" parameterType="com.vilens.linzi.em.crm.entity.Contract" >
+        update t_contract
+        <trim prefix="set" suffixOverrides=",">
+            <if test="contractCode!=null">contract_code=#{contractCode},</if>
+            <if test="contractVal!=null">contract_val=#{contractVal},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="contractConfirm!=null">contract_confirm=#{contractConfirm},</if>
+            <if test="payVal!=null">pay_val=#{payVal},</if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

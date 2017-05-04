@@ -1,0 +1,255 @@
+<div ng-controller="EditProjectCtrl">
+    <div class="widget">
+        <div class="widget-header">
+            <span class="widget-caption">编辑项目信息</span>
+        </div>
+        <div class="widget-body">
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">工程账号</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.projectAccount">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">项目名称</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.projectName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">母线桥架数量</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.busbarBridge">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">电缆桥架数量</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.cableBridge">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">所属单位</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.ownName">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">总包合同状态</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.contractStatus">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">总包合同金额</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.contractVal">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">总包合同确认</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.contractConfirm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">总包合同编号</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.contractCode">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">完工状态</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.status">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">资料情况</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.datasStatus">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">审计情况</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.auditStatus">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">发票情况</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.invoiceStatus">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">开票金额</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.billingVal">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">回款情况</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.receivedPaymentsStatus">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">回款金额</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.receivedPaymentsVal">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">付款总金额</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.totalPayAmount">
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="col-lg-6 control-label">备注</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="data.remark">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px">
+                <div class="form-horizontal col-lg-10 col-lg-offset-1">
+                    <tabset>
+                        <tab heading="分包1">
+                            <div class="row">
+                                <div class="form-horizontal col-lg-12">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同编号</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor1.contractCode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同状态</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor1.status">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-horizontal col-lg-12">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同金额</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor1.contractVal">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同确认</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor1.contractConfirm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-horizontal col-lg-12">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">付款金额</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor1.payVal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab heading="分包2">
+                            <div class="row">
+                                <div class="form-horizontal col-lg-12">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同编号</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor2.contractCode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同状态</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor2.status">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-horizontal col-lg-12">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同金额</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor2.contractVal">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">合同确认</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor2.contractConfirm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-horizontal col-lg-12">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-lg-6 control-label">付款金额</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" ng-model="data.subContractor2.payVal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+
+
+            <div class="row text-center" style="margin: 20px">
+                <button type="button"  class="btn btn-primary btn-blue white" ng-click="edit()">提交</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

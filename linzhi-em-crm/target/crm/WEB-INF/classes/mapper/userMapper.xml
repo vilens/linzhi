@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vilens.linzi.em.crm.dao">
+    <resultMap id="BaseResultMap" type="com.vilens.linzi.em.crm.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_code" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="role_id" property="userId" jdbcType="INTEGER"/>
+        <result column="role_code" property="roleCode" jdbcType="VARCHAR"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="role_level" property="roleLevel" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="user_column_list">
+        id,user_code, user_name, password, role_id, role_code, role_name, role_level
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="user_column_list"/>
+        from t_user
+        where id = #{id}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="user_column_list"/>
+        from t_user
+    </select>
+    <select id="selectUserByUserNameAndPwd" resultMap="BaseResultMap" parameterType="com.vilens.linzi.em.crm.entity.User">
+        select
+        <include refid="user_column_list"/>
+        from t_user
+        where user_name = #{userName} and password = #{password}
+        LIMIT 1
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from t_user
+        where id = #{id}
+    </delete>
+    <insert id="insert" parameterType="com.vilens.linzi.em.crm.entity.User">
+        insert into t_user (user_code, user_name, password,role_code,role_name,role_level)
+        values (#{userId}, #{userName}, #{password},#{roleCode},#{roleName},#{roleLevel},)
+    </insert>
+    <update id="updateById" parameterType="com.vilens.linzi.em.crm.entity.User">
+        update t_user
+        set
+        user_code = #{userCode},
+        user_name = #{userName},
+        password = #{password},
+        role_code = #{roleCode},
+        role_name = #{roleName},
+        role_level = #{roleLevel},
+        where id = #{id}
+    </update>
+</mapper>

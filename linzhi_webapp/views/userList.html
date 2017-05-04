@@ -1,0 +1,28 @@
+<div ng-controller="UserListCtrl">
+    <div class="widget">
+        <div class="widget-header">
+            <span class="widget-caption">用户列表</span>
+        </div>
+        <div class="widget-body">
+            <div class="table-responsive">
+                <table id="table" class="table table-bordered table-hover table-condensed data-list fix-header" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">用户名</th>
+                        <th class="text-center">角色</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in dataList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.userName}}</td>
+                        <td>{{item.roleName}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
