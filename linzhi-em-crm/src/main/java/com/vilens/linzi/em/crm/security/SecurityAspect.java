@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * Created by vilens on 2017/4/13.
  */
 public class SecurityAspect {
-    private static final String DEFAULT_TOKEN_NAME = "X-Token";
+//    private static final String DEFAULT_TOKEN_NAME = "X-Token";
 
     private TokenManager tokenManager;
     private String tokenName;
@@ -25,7 +25,7 @@ public class SecurityAspect {
 
     public void setTokenName(String tokenName) {
         if (StringUtil.isEmpty(tokenName)) {
-            tokenName = DEFAULT_TOKEN_NAME;
+            tokenName = TokenManager.DEFAULT_TOKEN_NAME;
         }
         this.tokenName = tokenName;
     }
@@ -42,9 +42,8 @@ public class SecurityAspect {
         String token = WebContext.getRequest().getHeader(tokenName);
         // 检查 token 有效性
         if (!tokenManager.checkToken(token)) {
-            String message = String.format("token [%s] is invalid", token);
-//            return ResultForm.createErrorResultForm(null, message);
-            throw new TokenException(message);
+            return ResultForm.createErrorAuthResultForm(null, "token is invalid");
+//            throw new TokenException(message);
         }
         // 调用目标方法
         return pjp.proceed();

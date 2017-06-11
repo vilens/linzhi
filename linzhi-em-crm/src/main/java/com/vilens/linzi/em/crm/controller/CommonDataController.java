@@ -1,6 +1,8 @@
 package com.vilens.linzi.em.crm.controller;
 
+import com.vilens.linzi.em.crm.bean.DataPaging;
 import com.vilens.linzi.em.crm.bean.JsonRequestBody;
+import com.vilens.linzi.em.crm.bean.PageForm;
 import com.vilens.linzi.em.crm.bean.ResultForm;
 import com.vilens.linzi.em.crm.dao.BaseDaoImpl;
 import com.vilens.linzi.em.crm.dao.UserDaoImpl;
@@ -10,6 +12,7 @@ import com.vilens.linzi.em.crm.entity.User;
 import com.vilens.linzi.em.crm.pojo.ProjectDetail;
 import com.vilens.linzi.em.crm.security.IgnoreSecurity;
 import com.vilens.linzi.em.crm.security.TokenManager;
+import com.vilens.linzi.em.crm.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +73,18 @@ public class CommonDataController {
         return result;
     }
 
+    @IgnoreSecurity
+    @RequestMapping(value = "/logout")
+    public Object logout(HttpServletRequest request) {
+        ResultForm<?> result = null;
+        String token = request.getHeader(TokenManager.DEFAULT_TOKEN_NAME);
+        if (StringUtil.isNotEmpty(token)) {
+            tokenManager.removeToken(token);
+        }
+        result = ResultForm.createSuccessResultForm(null, "登出成功");
+        return result;
+    }
+
     // 获取监管级别；
 //    @RequestMapping(value = "/getUsersById",method = RequestMethod.POST)
     @RequestMapping(value = "/getUsers")
@@ -117,8 +133,14 @@ public class CommonDataController {
 //        String projectAccount = jsonRequestBody.getString("projectAccount");
 //        String projectName = jsonRequestBody.getString("projectName");
         try {
-            List<ProjectDetail> projectList = baseDao.getProjectList();
-            result = ResultForm.createSuccessResultForm(projectList, "查询成功");
+            PageForm pageForm = jsonRequestBody.getPageForm();
+            Map pageParam = new HashMap();
+            pageParam.put("start", pageForm.getStart());
+            pageParam.put("limit", pageForm.getLimit());
+            Integer total = baseDao.countProjectList();
+            List<ProjectDetail> projectList = baseDao.getProjectList(pageParam);
+            DataPaging dataPaging = new DataPaging(projectList, total, pageForm.getCurrPage());
+            result = ResultForm.createSuccessResultForm(dataPaging, "查询成功");
         } catch (Exception e) {
             logger.error("error {} ", e.getMessage());
             result = ResultForm.createErrorResultForm(null, e.getMessage());

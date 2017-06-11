@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vilens.linzi.em.crm.dao.reportMapper" >
+
+    <select id="selectReportByDate" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+      select
+            p.create_time,
+            p.project_account,
+            p.project_name,
+            p.busbar_bridge,
+            p.cable_bridge,
+            p.own_name,
+            c.contract_code,
+            c.contract_val,
+            c.status as contractStatus,
+            c.contract_confirm,
+            p.status,
+
+            IFNULL(contract1.contract_code,'') contractCode1,
+            IFNULL(contract1.contract_val,'') contractVal1,
+            IFNULL(contract1.pay_val,'') payVal1,
+            IFNULL(contract1.contract_confirm,'') contractConfirm1,
+            IFNULL(contract1.status ,'')contractStatus1,
+
+            IFNULL(contract2.contract_code ,'') contractCode2,
+            IFNULL(contract2.contract_val ,'') contractVal2,
+            IFNULL(contract2.pay_val ,'') payVal2,
+            IFNULL(contract2.contract_confirm ,'') contractConfirm2,
+            IFNULL(contract2.status ,'') contractStatus2,
+
+            p.datas_status,
+            p.audit_status,
+            p.invoice_status,
+            p.billing_val,
+            p.received_payments_status,
+            p.received_payments_val,
+            p.total_pay_amount,
+            p.remark
+
+
+            from t_project p
+            inner join
+            t_contract c
+            on p.id = c.p_id
+            and c.is_main = 1
+
+            inner join
+            (
+                select contract_code,
+                contract_val,
+                pay_val,
+                contract_confirm,
+                status,
+                p_id
+                from t_contract
+                where is_main = 0
+                and id in (
+                    select
+                    min(id) id
+                    from t_contract
+                    where is_main = 0
+                    group by
+                    p_id
+                )
+            )as contract1
+            on p.id = contract1.p_id
+
+            inner join
+            (
+                select contract_code,
+                contract_val,
+                pay_val,
+                contract_confirm,
+                status,
+                p_id
+                from t_contract
+                where is_main = 0
+                and id in (
+                    select
+                    max(id) id
+                    from t_contract
+                    where is_main = 0
+                    group by
+                    p_id
+                )
+            )as contract2
+            on p.id = contract2.p_id
+        <where>
+            <if test="beginTime != null ">
+                and p.create_time &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null ">
+                and p.create_time &lt;= #{endTime}
+            </if>
+            <if test="projectName != null ">
+                and p.project_name like CONCAT('%',#{projectName},'%')
+            </if>
+            <if test="ownName != null ">
+                and p.own_name like CONCAT('%',#{ownName},'%')
+            </if>
+            <if test="mainContractCode != null ">
+                and c.contract_code like CONCAT('%',#{mainContractCode},'%')
+            </if>
+            <if test="subContractCode1 != null ">
+                and contract1.contract_code like CONCAT('%',#{subContractCode1},'%')
+            </if>
+            <if test="subContractCode2 != null ">
+                and contract2.contract_code like CONCAT('%',#{subContractCode2},'%')
+            </if>
+        </where>
+
+    </select>
+</mapper>

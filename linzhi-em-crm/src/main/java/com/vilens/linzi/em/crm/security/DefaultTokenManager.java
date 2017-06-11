@@ -23,4 +23,13 @@ public class DefaultTokenManager implements TokenManager {
     public boolean checkToken(String token) {
         return !StringUtil.isEmpty(token) && tokenMap.containsKey(token);
     }
+
+    @Override
+    public boolean removeToken(String token) {
+        if (!StringUtil.isEmpty(token) && tokenMap.containsKey(token)) {
+            tokenMap.remove(token);
+            return true;
+        }
+        return false;
+    }
 }

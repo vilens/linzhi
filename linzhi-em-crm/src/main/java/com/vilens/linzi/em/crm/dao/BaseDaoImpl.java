@@ -49,6 +49,14 @@ public class BaseDaoImpl {
         return sqlSessionTemplate.selectList("com.vilens.linzi.em.crm.dao.selectProjectList",param);
     }
 
+    public int countProjectList(){
+        return countProjectList(null);
+    }
+    public int countProjectList(Map param){
+        return sqlSessionTemplate.selectOne("com.vilens.linzi.em.crm.dao.countProjectList",param);
+    }
+
+
     public ProjectDetail getProjectById(Map param){
         return sqlSessionTemplate.selectOne("com.vilens.linzi.em.crm.dao.selectProjectById",param);
     }

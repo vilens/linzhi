@@ -82,6 +82,17 @@
         from t_project p
         inner join t_contract t on p.id = t.p_id and t.is_main = 1
         order by p.id asc
+        <if test="start != null">
+            limit #{start}, #{limit}
+        </if>
+    </select>
+    <select id="countProjectList" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM
+        t_project p
+        inner join t_contract t on p.id = t.p_id and t.is_main = 1
+        ORDER BY p.id asc
     </select>
     <select id="selectProjectById" parameterType="java.util.HashMap" resultMap="ProjectDetailResultMap" >
         select
@@ -148,6 +159,7 @@
     <update id="updateContractById" parameterType="com.vilens.linzi.em.crm.entity.Contract" >
         update t_contract
         <trim prefix="set" suffixOverrides=",">
+            <if test="pId!=null">p_id=#{pId},</if>
             <if test="contractCode!=null">contract_code=#{contractCode},</if>
             <if test="contractVal!=null">contract_val=#{contractVal},</if>
             <if test="status!=null">status=#{status},</if>
