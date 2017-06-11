@@ -1,5 +1,6 @@
 <div ng-controller="ProjectListCtrl">
-
+    <toaster-container
+            toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
     <div class="widget">
         <div class="widget-body">
             <div class="table-responsive">
@@ -27,7 +28,28 @@
                         </tr>
                     </tbody>
                 </table>
+                <div style="width: 100%;display: flex;justify-content:center;">
+                    <pagination class="pagination"
+                                items-per-page="10"
+                                ng-model="data.currPage"
+                                total-items="data.total"
+                                max-size="maxSize"
+                                ng-change="pageChanged(data.currPage)"
+                                boundary-links="false"
+                                boundary-link-numbers="true"
+                                rotate="false"
+                                force-ellipses="true"
+                                num-pages="data.totalPage"
+                                previous-text="上一页"
+                                next-text="下一页"></pagination>
+                    <div style="width: 140px;margin-top: 15px;height: 32px">
+                        <input type="number" ng-model="data.currPage" style="margin-left: 20px;height: 32px;width: 40px" min="1" max="{{data.totalPage}}" />
+                        <button class="btn btn-primary" type="button" ng-click="search()" style="margin-left: 5px;width: 40px">Go</button>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </div>
 

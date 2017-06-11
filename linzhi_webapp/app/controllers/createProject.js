@@ -16,8 +16,7 @@ app.controller('CreateProjectCtrl', function ($scope,$state) {
                     if (data.success) {
                         $state.go('app.projectList');
                     } else {
-                        // layer.alert("xxx", data.message);
-                        alert(data.message);
+                        layer.msg(data.message);
                     }
                 }
             });

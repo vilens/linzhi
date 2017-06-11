@@ -1,0 +1,62 @@
+<style>
+    .width-120 {
+        width: 120px;
+    }
+
+    .padding1 {
+        padding: 5px 0;
+    }
+</style>
+<div ng-controller="ExportReportCtrl">
+
+    <div class="widget">
+        <div class="widget-header">
+            <div class="widget-caption">筛选条件</div>
+        </div>
+        <div class="widget-body text-align-center">
+            <div class="form-inline padding1">
+                <div class="form-group">
+                    <label class="control-label text-align-right width-120">项目名称：</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="param.projectName">
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline padding1">
+                <div class="form-group">
+                    <label class="control-label text-align-right width-120">所属单位：</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="param.ownName">
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline padding1">
+                <div class="form-group">
+                    <label class="control-label text-align-right width-120">总包合同编号：</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="param.mainContractCode">
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline padding1">
+                <div class="form-group ">
+                    <label class="control-label text-align-right width-120">分包合同1编号：</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="param.subContractCode1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline padding1">
+                <div class="form-group">
+                    <label class="control-label text-align-right width-120">分包合同2编号：</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="param.subContractCode2">
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline padding1">
+                <button id="exportReportForm" type="button" class="btn btn-primary" ng-click="export()">下载</button>
+            </div>
+        </div>
+    </div>
+</div>

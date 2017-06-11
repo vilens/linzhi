@@ -16,7 +16,7 @@ app.controller('EditProjectCtrl', function ($scope, $state, $stateParams) {
                 if (data.success) {
                     $state.go('app.projectList');
                 } else {
-                    alert(data.message);
+                    layer.msg(data.message);
                 }
             }
         });
@@ -32,7 +32,7 @@ app.controller('EditProjectCtrl', function ($scope, $state, $stateParams) {
                 if (data.success) {
                     $scope.data = angular.extend($scope.data, data.result);
                 } else {
-                    alert(data.message);
+                    layer.msg(data.message);
                 }
             }
         });
@@ -53,7 +53,7 @@ app.controller('EditProjectCtrl', function ($scope, $state, $stateParams) {
                         }
                     })
                 } else {
-                    alert(data.message);
+                    layer.msg(data.message);
                 }
             }
         });

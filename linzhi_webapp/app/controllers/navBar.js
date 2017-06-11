@@ -1,23 +1,23 @@
 /**
- * Created by vilens on 2017/4/15.
+ * Created by vilens on 2017/6/3.
  */
-app.controller('UserListCtrl', function ($scope) {
-    $scope.search = function () {
+app.controller('NavBarCtrl', function ($scope, $state) {
+
+    $scope.logout = function () {
         $.ajax({
             type: "post",
             dataType: "json",
             contentType: "application/json; charset=utf-8",//(可以)
-            data: {},
-            url: "rest/commonData/getUsers",
+            data: $scope.data,
+            url: "rest/commonData/logout",
             success: function (data) {
                 if (data.success) {
-                    $scope.dataList = data.result;
+                    $state.go('login');
                 }else{
                     layer.msg(data.message);
                 }
             }
         });
-    }
 
-    $scope.search();
+    }
 })

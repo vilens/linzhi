@@ -18,10 +18,10 @@ app.controller('LoginCtrl', function ($scope, $state) {
                     localStorage.token=data.result;
                     $state.go('app.dashboard');
                 } else {
-                    alert(data.message);
+                    layer.msg(data.message);
                 }
             }
         });
-
     }
+
 })
