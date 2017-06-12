@@ -16,7 +16,8 @@
 
         if(opt.url.indexOf(".json")==-1&&opt.url.indexOf("http")==-1)
         {
-           opt.url = "http://localhost:8080/" + opt.url;
+           // opt.url = "http://localhost/" + opt.url;
+           opt.url = "http://192.168.10.109:8080/" + opt.url;
             opt.type="post";
             opt.dataType= "json";
         }

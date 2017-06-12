@@ -3,8 +3,8 @@
  */
 app.controller('LoginCtrl', function ($scope, $state) {
     $scope.data = {
-        userName:"test1",
-        password:"test1"
+        userName:"",
+        password:""
     };
     $scope.login = function () {
         $.ajax({

@@ -9,13 +9,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">工程账号</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.projectAccount">
+                            <input type="text" ng-disabled="userInfo.roleLevel==2?'':'disable'" class="form-control"
+                                   ng-model="data.projectAccount">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">项目名称</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.projectName">
+                            <input type="text" ng-disabled="userInfo.roleLevel==2?'':'disable'" class="form-control"
+                                   ng-model="data.projectName">
                         </div>
                     </div>
                 </div>
@@ -25,13 +27,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">母线桥架数量</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.busbarBridge">
+                            <input type="text" ng-disabled="userInfo.roleLevel==5?'':'disable'" class="form-control"
+                                   ng-model="data.busbarBridge">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">电缆桥架数量</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.cableBridge">
+                            <input type="text" ng-disabled="userInfo.roleLevel==5?'':'disable'" class="form-control"
+                                   ng-model="data.cableBridge">
                         </div>
                     </div>
                 </div>
@@ -41,13 +45,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">所属单位</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.ownName">
+                            <input type="text" ng-disabled="userInfo.roleLevel==2?'':'disable'" class="form-control"
+                                   ng-model="data.ownName">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">总包合同状态</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.contractStatus">
+                            <input type="text" ng-disabled="userInfo.roleLevel==2?'':'disable'" class="form-control"
+                                   ng-model="data.contractStatus">
                         </div>
                     </div>
                 </div>
@@ -57,13 +63,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">总包合同金额</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.contractVal">
+                            <input type="text" ng-disabled="userInfo.roleLevel==2?'':'disable'" class="form-control"
+                                   ng-model="data.contractVal">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">总包合同确认</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.contractConfirm">
+                            <input type="text" ng-disabled="userInfo.roleLevel==4?'':'disable'" class="form-control"
+                                   ng-model="data.contractConfirm">
                         </div>
                     </div>
                 </div>
@@ -73,13 +81,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">总包合同编号</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.contractCode">
+                            <input type="text" ng-disabled="userInfo.roleLevel==4?'':'disable'" class="form-control"
+                                   ng-model="data.contractCode">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">完工状态</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.status">
+                            <input type="text" ng-disabled="userInfo.roleLevel==5?'':'disable'" class="form-control"
+                                   ng-model="data.status">
                         </div>
                     </div>
                 </div>
@@ -89,13 +99,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">资料情况</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.datasStatus">
+                            <input type="text" ng-disabled="userInfo.roleLevel==2?'':'disable'" class="form-control"
+                                   ng-model="data.datasStatus">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">审计情况</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.auditStatus">
+                            <input type="text" ng-disabled="userInfo.roleLevel==2?'':'disable'" class="form-control"
+                                   ng-model="data.auditStatus">
                         </div>
                     </div>
                 </div>
@@ -105,13 +117,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">发票情况</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.invoiceStatus">
+                            <input type="text" ng-disabled="userInfo.roleLevel==3?'':'disable'" class="form-control"
+                                   ng-model="data.invoiceStatus">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">开票金额</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.billingVal">
+                            <input type="text" ng-disabled="userInfo.roleLevel==3?'':'disable'" class="form-control"
+                                   ng-model="data.billingVal">
                         </div>
                     </div>
                 </div>
@@ -121,13 +135,15 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">回款情况</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.receivedPaymentsStatus">
+                            <input type="text" ng-disabled="userInfo.roleLevel==3?'':'disable'" class="form-control"
+                                   ng-model="data.receivedPaymentsStatus">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">回款金额</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.receivedPaymentsVal">
+                            <input type="text" ng-disabled="userInfo.roleLevel==3?'':'disable'" class="form-control"
+                                   ng-model="data.receivedPaymentsVal">
                         </div>
                     </div>
                 </div>
@@ -137,7 +153,8 @@
                     <div class="form-group col-lg-6">
                         <label class="col-lg-6 control-label">付款总金额</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="data.totalPayAmount">
+                            <input type="text" ng-disabled="userInfo.roleLevel==3?'':'disable'" class="form-control"
+                                   ng-model="data.totalPayAmount">
                         </div>
                     </div>
                     <div class="form-group col-lg-6">
@@ -158,13 +175,15 @@
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同编号</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor1.contractCode">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==4?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor1.contractCode">
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同状态</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor1.status">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==5?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor1.status">
                                         </div>
                                     </div>
                                 </div>
@@ -174,13 +193,15 @@
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同金额</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor1.contractVal">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==5?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor1.contractVal">
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同确认</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor1.contractConfirm">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==4?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor1.contractConfirm">
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +211,8 @@
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">付款金额</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor1.payVal">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==3?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor1.payVal">
                                         </div>
                                     </div>
                                 </div>
@@ -202,13 +224,15 @@
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同编号</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor2.contractCode">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==4?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor2.contractCode">
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同状态</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor2.status">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==5?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor2.status">
                                         </div>
                                     </div>
                                 </div>
@@ -218,13 +242,15 @@
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同金额</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor2.contractVal">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==5?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor2.contractVal">
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">合同确认</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor2.contractConfirm">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==4?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor2.contractConfirm">
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +260,8 @@
                                     <div class="form-group col-lg-6">
                                         <label class="col-lg-6 control-label">付款金额</label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" ng-model="data.subContractor2.payVal">
+                                            <input type="text" ng-disabled="userInfo.roleLevel==3?'':'disable'" class="form-control"
+                                                   ng-model="data.subContractor2.payVal">
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +273,7 @@
 
 
             <div class="row text-center" style="margin: 20px">
-                <button type="button"  class="btn btn-primary btn-blue white" ng-click="edit()">提交</button>
+                <button type="button" class="btn btn-primary btn-blue white" ng-click="edit()">提交</button>
             </div>
         </div>
 

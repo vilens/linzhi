@@ -6,7 +6,7 @@
 <!--</div>-->
 <!-- /Page Sidebar Header -->
 <!-- Sidebar Menu -->
-<ul class="nav sidebar-menu">
+<ul class="nav sidebar-menu" ng-controller="sidebarCtrl">
     <!--Dashboard-->
     <li ui-sref-active="active">
         <a ui-sref="app.dashboard">
@@ -49,7 +49,7 @@
                     <span class="menu-text">项目列表</span>
                 </a>
             </li>
-            <li ui-sref-active="active">
+            <li ui-sref-active="active" ng-if="userInfo.roleLevel==2">
                 <a ui-sref="app.createProject">
                     <span class="menu-text">新建项目</span>
                 </a>
